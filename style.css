@@ -1,0 +1,52 @@
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+img.lazy {
+  width: 100%;
+  height: 200px;             
+  background: #f0f0f0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  position: relative;
+}
+
+img.lazy::before {
+  content: "";
+  position: absolute;
+
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: #888;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+img.lazy.loaded::before {
+  display: none;
+}
